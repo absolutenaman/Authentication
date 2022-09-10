@@ -51,6 +51,8 @@ function AuthContent({ isLogin, onAuthenticate }) {
       });
       return;
     }
+
+    
     onAuthenticate({ email, password });
   }
 

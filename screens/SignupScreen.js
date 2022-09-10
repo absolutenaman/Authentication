@@ -1,24 +1,24 @@
 import { useState } from 'react';
-import AuthContent from '../components/Auth/AuthContent';
-import LoadingOverlay from '../components/ui/LoadingOverlay'
-import {createUser} from '../util/Auth';
 
-async function SignupScreen() {
-  const [isAuthenticating,setIsAuthenticating]=useState(false);
-  async function sign_up_handler({email,password})
-  {
+import AuthContent from '../components/Auth/AuthContent';
+import LoadingOverlay from '../components/ui/LoadingOverlay';
+import {createUser}  from '../util/Auth';
+
+function SignupScreen() {
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
+  async function signupHandler({ email, password }) {
     setIsAuthenticating(true);
-    await createUser(email,password);
+    console.log(email);
+    await createUser(email, password);
     setIsAuthenticating(false);
   }
-  
-  if(isAuthenticating)
-  {
-    return <LoadingOverlay message="Creating the User..."/>
+
+  if (isAuthenticating) {
+    return <LoadingOverlay message="Creating user..." />;
   }
- 
-  return <AuthContent onAuthenticate={sign_up_handler}/>;
-  
+
+  return <AuthContent onAuthenticate={signupHandler} />;
 }
 
 export default SignupScreen;
